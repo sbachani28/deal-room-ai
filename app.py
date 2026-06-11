@@ -37,7 +37,6 @@ st.markdown("""
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
-header {visibility: hidden;}
 
 .risk-red { background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 12px; border-radius: 4px; margin: 8px 0; color: #1a202c; }
 .risk-yellow { background-color: #fef9c3; border-left: 4px solid #eab308; padding: 12px; border-radius: 4px; margin: 8px 0; color: #1a202c; }
