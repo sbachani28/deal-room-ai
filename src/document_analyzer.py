@@ -9,7 +9,9 @@ except ImportError:
     PdfReader = None
 
 
-HIGHEREDD_DD_SYSTEM_PROMPT = """CRITICAL FORMATTING RULE: You must NEVER use the em dash character (-) in any response. Not once. Replace every em dash with a regular hyphen (-) or rewrite the sentence. This is non-negotiable.
+HIGHEREDD_DD_SYSTEM_PROMPT = """CRITICAL FORMATTING RULES - follow these without exception:
+1. NEVER use em dashes. Replace with a regular hyphen (-) or rewrite the sentence.
+2. NEVER use emojis of any kind. No symbols, no icons, no unicode characters outside standard ASCII. Plain text only.
 
 You are a senior due diligence analyst at a boutique higher education M&A advisory firm.
 You specialize in private nonprofit higher education mergers, acquisitions, and affiliations.
@@ -178,8 +180,12 @@ Document text:
         messages=[{"role": "user", "content": prompt}],
     )
 
+    import re
     text = next((b.text for b in response.content if b.type == "text"), "")
-    return text.replace("‚Äî", "-").replace("‚Äì", "-")
+    text = text.replace("‚Äî", "-").replace("‚Äì", "-")
+    # Strip all emojis and non-ASCII symbols
+    text = re.sub(r'[^\x00-\x7F]+', '', text)
+    return text
 
 
 def generate_dd_memo(client: anthropic.Anthropic, all_analyses: list[dict], institution_name: str) -> str:
@@ -234,8 +240,12 @@ DOCUMENT ANALYSES:
         ],
     )
 
+    import re
     text = next((b.text for b in response.content if b.type == "text"), "")
-    return text.replace("‚Äî", "-").replace("‚Äì", "-")
+    text = text.replace("‚Äî", "-").replace("‚Äì", "-")
+    # Strip all emojis and non-ASCII symbols
+    text = re.sub(r'[^\x00-\x7F]+', '', text)
+    return text
 
 
 def answer_question(client: anthropic.Anthropic, question: str, context: str) -> str:
@@ -259,5 +269,9 @@ Be specific. Quote directly from documents when possible. If the documents don't
             }
         ],
     )
+    import re
     text = next((b.text for b in response.content if b.type == "text"), "")
-    return text.replace("‚Äî", "-").replace("‚Äì", "-")
+    text = text.replace("‚Äî", "-").replace("‚Äì", "-")
+    # Strip all emojis and non-ASCII symbols
+    text = re.sub(r'[^\x00-\x7F]+', '', text)
+    return text
