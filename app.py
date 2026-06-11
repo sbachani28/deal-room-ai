@@ -93,7 +93,7 @@ with st.sidebar:
     st.divider()
 
     st.markdown("**Deal:**")
-    deal_name = st.text_input("Deal Name", placeholder="e.g., Woodbury √ó Redlands")
+    deal_name = st.text_input("Deal Name", placeholder="e.g., Woodbury x Redlands")
 
     st.markdown("**Institutions:**")
     target_name = st.text_input("Target Institution", placeholder="e.g., Woodbury University")
