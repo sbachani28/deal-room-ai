@@ -88,7 +88,7 @@ with st.sidebar:
     if os.path.exists(logo_path):
         st.image(logo_path, width=160)
     else:
-        st.markdown("### üéì Deal Room AI")
+        st.markdown("### Deal Room AI")
     st.markdown("### Higher Ed M&A Due Diligence Engine")
     st.caption("Built for Prager Partners - private nonprofit higher education advisory")
     st.divider()
@@ -101,7 +101,7 @@ with st.sidebar:
     acquirer_name = st.text_input("Acquirer Institution", placeholder="e.g., University of Redlands")
 
     st.divider()
-    tab_options = ["üìä Public Data", "üìÑ Document Analysis", "üßÆ CFI Calculator", "üí¨ Q&A", "üìã DD Memo"]
+    tab_options = ["Public Data", "Document Analysis", "CFI Calculator", "Q&A", "DD Memo"]
     selected_tab = st.radio("Navigate", tab_options)
 
 
@@ -117,16 +117,16 @@ if "dd_memo" not in st.session_state:
 
 # ‚îÄ‚îÄ Main content ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-st.title(f"üéì Deal Room AI{' - ' + deal_name if deal_name else ''}")
+st.title(f"Deal Room AI{' - ' + deal_name if deal_name else ''}")
 
 client = get_client()
-if not client and selected_tab not in ["üìä Public Data", "üßÆ CFI Calculator"]:
+if not client and selected_tab not in ["Public Data", "CFI Calculator"]:
     st.warning("Enter your Anthropic API key in the sidebar to use AI features.")
 
 
 # ‚îÄ‚îÄ TAB 1: Public Data ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-if selected_tab == "üìä Public Data":
+if selected_tab == "Public Data":
     st.header("Public Data Intelligence")
     st.caption("Auto-fetches IRS 990 data (ProPublica) and IPEDS enrollment/sector data for both institutions")
 
@@ -270,7 +270,7 @@ Expected timeline: <b>{acc['timeline']}</b>
 
 # ‚îÄ‚îÄ TAB 2: Document Analysis ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-elif selected_tab == "üìÑ Document Analysis":
+elif selected_tab == "Document Analysis":
     st.header("Document Analysis")
     st.caption("AI-powered higher-ed M&A due diligence analysis - from public data or uploaded documents")
 
@@ -402,7 +402,7 @@ elif selected_tab == "üìÑ Document Analysis":
 
 # ‚îÄ‚îÄ TAB 3: CFI Calculator ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-elif selected_tab == "üßÆ CFI Calculator":
+elif selected_tab == "CFI Calculator":
     st.header("Composite Financial Index (CFI) Calculator")
     st.caption("DOE's primary tool for assessing financial health. Scores below 1.5 trigger enhanced oversight.")
 
@@ -550,7 +550,7 @@ Restricted (40%): <b>${avg_net*0.4/1_000_000:.1f}M</b> - used as Net Assets w/ D
 
 # ‚îÄ‚îÄ TAB 4: Q&A ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-elif selected_tab == "üí¨ Q&A":
+elif selected_tab == "Q&A":
     st.header("Deal Q&A")
     st.caption("Ask questions about this deal and get answers grounded in the loaded documents")
 
@@ -600,7 +600,7 @@ elif selected_tab == "üí¨ Q&A":
 
 # ‚îÄ‚îÄ TAB 5: DD Memo ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 
-elif selected_tab == "üìã DD Memo":
+elif selected_tab == "DD Memo":
     st.header("Due Diligence Memo")
     st.caption("Generate a full DD memo synthesizing all document analyses")
 
