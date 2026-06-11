@@ -93,19 +93,6 @@ with st.sidebar:
     st.caption("Built for Prager Partners - private nonprofit higher education advisory")
     st.divider()
 
-    # Only show API key input if not already set via environment/secrets
-    if not os.getenv("ANTHROPIC_API_KEY"):
-        api_key_input = st.text_input(
-            "Anthropic API Key",
-            type="password",
-            help="Your ANTHROPIC_API_KEY",
-        )
-        if api_key_input:
-            st.session_state["api_key"] = api_key_input
-            os.environ["ANTHROPIC_API_KEY"] = api_key_input
-        os.environ["ANTHROPIC_API_KEY"] = api_key_input
-
-    st.divider()
     st.markdown("**Deal:**")
     deal_name = st.text_input("Deal Name", placeholder="e.g., Woodbury √ó Redlands")
 
