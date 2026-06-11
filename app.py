@@ -173,7 +173,7 @@ Total Assets: ${f"{assets:,.0f}" if assets is not None else "N/A"} &nbsp;|&nbsp;
 </div>
 """, unsafe_allow_html=True)
                     else:
-                        st.warning(f"‚ö†Ô∏è ProPublica found this org (EIN: {d.get('ein')}) but has no financial filing data on record. Try searching by the institution's full legal name, or check [ProPublica Nonprofit Explorer](https://projects.propublica.org/nonprofits/) directly.")
+                        st.warning(f"WARNING: ProPublica found this org (EIN: {d.get('ein')}) but has no financial filing data on record. Try searching by the institution's full legal name, or check [ProPublica Nonprofit Explorer](https://projects.propublica.org/nonprofits/) directly.")
 
             if f"{label}_ipeds" in st.session_state:
                 ip = st.session_state[f"{label}_ipeds"]
@@ -194,7 +194,7 @@ Total Assets: ${f"{assets:,.0f}" if assets is not None else "N/A"} &nbsp;|&nbsp;
 
     # ‚îÄ‚îÄ Auto Accreditation Analysis ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
     st.divider()
-    st.subheader("‚öñÔ∏è Accreditation Change-of-Control - Deal Analysis")
+    st.subheader("Accreditation Change-of-Control - Deal Analysis")
 
     def get_accreditor_for_state(state_code):
         """Return the accreditor key for a given US state code."""
@@ -235,9 +235,9 @@ Total Assets: ${f"{assets:,.0f}" if assets is not None else "N/A"} &nbsp;|&nbsp;
                     st.markdown(f"""
 <div class="risk-yellow" style="color:#1a202c;">
 <b>{acc['name']} ({acc_key})</b><br><br>
-üìã <b>Notice:</b> {acc['notice_required']}<br>
-‚è±Ô∏è <b>Timeline:</b> {acc['timeline']}<br>
-üìù <b>Key Requirement:</b> {acc['notes']}
+<b>Notice:</b> {acc['notice_required']}<br>
+<b>Timeline:</b> {acc['timeline']}<br>
+<b>Key Requirement:</b> {acc['notes']}
 </div>
 """, unsafe_allow_html=True)
                 else:
@@ -249,7 +249,7 @@ Total Assets: ${f"{assets:,.0f}" if assets is not None else "N/A"} &nbsp;|&nbsp;
             a = ACCREDITOR_CHANGE_OF_CONTROL[acquirer_acc_key]
             st.markdown(f"""
 <div class="risk-red" style="margin-top:16px;">
-‚ö†Ô∏è <b>Cross-Accreditor Deal Detected</b><br>
+<b>Cross-Accreditor Deal Detected</b><br>
 Target ({target_acc_key}) and Acquirer ({acquirer_acc_key}) fall under <b>different regional accreditors</b>.
 Both bodies must separately approve the change of control.<br><br>
 <b>Combined worst-case timeline: {t['timeline']} + {a['timeline']}</b><br>
@@ -260,7 +260,7 @@ Plan for the longer of the two and file with both simultaneously at LOI.
             acc = ACCREDITOR_CHANGE_OF_CONTROL[target_acc_key]
             st.markdown(f"""
 <div class="risk-green" style="margin-top:16px; color:#1a202c;">
-‚úÖ <b>Same Accreditor ({target_acc_key})</b> - Single approval process required.<br>
+<b>Same Accreditor ({target_acc_key})</b> - Single approval process required.<br>
 Expected timeline: <b>{acc['timeline']}</b>
 </div>
 """, unsafe_allow_html=True)
@@ -281,7 +281,7 @@ elif selected_tab == "Document Analysis":
     has_public_data = any(k in st.session_state for k in ["Target_990", "Acquirer_990", "Target_ipeds", "Acquirer_ipeds"])
 
     if has_public_data:
-        st.subheader("‚ö° Generate Analysis from Public Data")
+        st.subheader("Generate Analysis from Public Data")
         st.caption("Uses the 990 and IPEDS data already fetched - no document upload needed")
 
         def build_public_data_text(label):
@@ -315,7 +315,7 @@ elif selected_tab == "Document Analysis":
             key="auto_focus"
         )
 
-        if st.button("üîç Generate Analysis from Public Data", type="primary"):
+        if st.button("Generate Analysis from Public Data", type="primary"):
             target_text = build_public_data_text("Target")
             acquirer_text = build_public_data_text("Acquirer")
             combined = f"{target_text}\n\n{acquirer_text}"
@@ -332,7 +332,7 @@ elif selected_tab == "Document Analysis":
             st.rerun()
 
     st.divider()
-    st.subheader("üìé Or Upload Deal Documents")
+    st.subheader("Or Upload Deal Documents")
     st.caption("Audited financials, accreditation letters, board minutes, bond indentures, etc.")
 
     uploaded_files = st.file_uploader(
@@ -383,9 +383,9 @@ elif selected_tab == "Document Analysis":
                     key_findings = parsed.get("key_findings", [])
 
                     if red_flags:
-                        st.markdown('<div class="risk-red"><b>üö® Red Flags</b><br>' + "<br>".join(f"‚Ä¢ {r}" for r in red_flags) + "</div>", unsafe_allow_html=True)
+                        st.markdown('<div class="risk-red"><b>Red Flags</b><br>' + "<br>".join(f"‚Ä¢ {r}" for r in red_flags) + "</div>", unsafe_allow_html=True)
                     if key_findings:
-                        st.markdown('<div class="risk-green"><b>‚úÖ Key Findings</b><br>' + "<br>".join(f"‚Ä¢ {r}" for r in key_findings) + "</div>", unsafe_allow_html=True)
+                        st.markdown('<div class="risk-green"><b>Key Findings</b><br>' + "<br>".join(f"‚Ä¢ {r}" for r in key_findings) + "</div>", unsafe_allow_html=True)
 
                     # Show remaining fields
                     skip = {"red_flags", "key_findings"}
@@ -462,7 +462,7 @@ elif selected_tab == "CFI Calculator":
             cfi_defaults["change_na"] = c["total_revenue"] - c["total_expenses"]
 
             # Show year-by-year trend
-            with st.expander(f"üìà Year-by-Year Trend ({len(filings)} filings)", expanded=False):
+            with st.expander(f"Year-by-Year Trend ({len(filings)} filings)", expanded=False):
                 trend_data = {"Year": [], "Revenue ($M)": [], "Expenses ($M)": [], "Net Assets ($M)": []}
                 for f in sorted(filings, key=lambda x: x.get("year", 0)):
                     trend_data["Year"].append(str(f.get("year", "?")))
@@ -493,7 +493,7 @@ Restricted (40%): <b>${avg_net*0.4/1_000_000:.1f}M</b> - used as Net Assets w/ D
 </div>
 """, unsafe_allow_html=True)
 
-            st.info(f"‚úÖ Fields pre-filled using {len(filings)}-year average from IRS 990 data. Net assets split 60/40 - adjust if you have audited figures.")
+            st.info(f"Fields pre-filled using {len(filings)}-year average from IRS 990 data. Net assets split 60/40 - adjust if you have audited figures.")
     else:
         st.info("üí° Fetch public data for your institutions in the Public Data tab to auto-fill these fields.")
 
