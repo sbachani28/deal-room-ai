@@ -1,6 +1,5 @@
 """
 Deal Room AI - Higher Education M&A Due Diligence Engine
-Prager Partners Internship Demo
 """
 import json
 import os
@@ -83,13 +82,8 @@ def render_cfi_gauge(cfi_score: float):
 
 with st.sidebar:
     import os
-    logo_path = os.path.join(os.path.dirname(__file__), "logo.png")
-    if os.path.exists(logo_path):
-        st.image(logo_path, width=160)
-    else:
-        st.markdown("### Deal Room AI")
+    st.markdown("### Deal Room AI")
     st.markdown("### Higher Ed M&A Due Diligence Engine")
-    st.caption("Built for Prager Partners - private nonprofit higher education advisory")
     st.divider()
 
     st.markdown("**Deal:**")
